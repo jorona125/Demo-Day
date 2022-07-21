@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     aws = {
-        source = "hasicorps/aws"
-        version = "~> 3.0"
+        source = "aws"
+        version = "~> 4.22.0"
     }
     }
   }
@@ -11,3 +11,5 @@ provider "aws" {
     region = "us-east-1"
   
 }
+
+
