@@ -2,3 +2,4 @@
 *.tfvars.json
 .terraformrc
 terraform.rc
+**/.terraform/*
