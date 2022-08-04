@@ -1,24 +1,24 @@
-module "autoscaling" {
-  source      = "./modules/autoscaling" #A
-  namespace   = var.namespace #B
-    ssh_keypair = var.ssh_keypair #A
-
-  vpc       = module.networking.vpc #A
-  sg        = module.networking.sg #A
+module "webserver" {
+  source      = "./modules/webserver" #A
+  project_name   = var.project_name #B
+  ssh_keypair = var.ssh_keypair #A
+  region      = var.region
+  vpc       = module.network.vpc #A
+  sg        = module.network.sg #A
   db_config = module.database.db_config #A
-
+  subnets   = module.network.subnets
 }
 
 module "database" {
   source    = "./modules/database" #A
-  namespace = var.namespace #B
+  project_name = var.project_name #B
 
-    vpc = module.networking.vpc #A
-  sg  = module.networking.sg #A
+    vpc = module.network.vpc #A
+  sg  = module.network.sg #A
 
 }
 
-module "networking" {
-  source    = "./modules/networking" #A
-  namespace = var.namespace #B
+module "network" {
+  source    = "./modules/network" #A
+  project_name = var.project_name #B
 }

@@ -25,3 +25,19 @@ variable "db_config" {
     } #A
   ) #A
 }
+
+variable "region" {
+  type =  string 
+  
+}
+
+
+variable "subnets" {
+  type = object(
+    {
+    one = string
+    two = string 
+    }
+  )
+  
+}

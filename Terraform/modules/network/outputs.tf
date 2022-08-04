@@ -9,3 +9,12 @@ output "sg" {
     websvr = module.websvr_sg.security_group.id #B
   } #B
 }
+
+
+output "subnets" {
+  value = {
+   one =  module.vpc.public_subnets[0]
+   two =  module.vpc.public_subnets[1]
+   three = module.vpc.public_subnets[2]  
+  } 
+}

@@ -1,3 +1,3 @@
-variable "namespace" {
+variable "project_name" {
     type = string
 }

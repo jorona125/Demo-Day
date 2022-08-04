@@ -12,3 +12,10 @@ variable "project_name" {
   description = "This is a project to deploy a drupal enviorment into AWS"
   type        = string
 }
+
+variable "ssh_keypair" {
+  description = "SSH keypair"
+  default = null
+  type    = string 
+  
+}

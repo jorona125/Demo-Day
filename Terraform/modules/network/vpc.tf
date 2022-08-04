@@ -15,6 +15,15 @@ module "vpc" { #A
   single_nat_gateway               = true
 }
 
+module "lb_sg" {
+  source = "terraform-in-action/sg/aws"
+  vpc_id = module.vpc.vpc_id
+  ingress_rules = [{
+    port        = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }]  
+  
+}
 
 module "websvr_sg" {
   source = "terraform-in-action/sg/aws"

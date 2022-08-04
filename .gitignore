@@ -3,3 +3,4 @@
 .terraformrc
 terraform.rc
 **/.terraform/*
+.terraform
