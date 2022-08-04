@@ -1,3 +1,3 @@
-output "lb_dns_name" {
-  value = module.alb.this_lb_dns_name
+output "aws_elb_name" {
+  value = module.aws_elb.thisaws_elb_dns_name
 }
