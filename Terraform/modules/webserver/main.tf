@@ -20,7 +20,6 @@ resource "aws_autoscaling_group" "webserver" {
   min_size            = 1
   max_size            = 3
   vpc_zone_identifier = var.vpc.private_subnets
-  target_group_arns   = module.alb.target_group_arns
   launch_template {
     id      = aws_launch_template.webserver.id
     version = aws_launch_template.webserver.latest_version
@@ -29,7 +28,7 @@ resource "aws_autoscaling_group" "webserver" {
 
 resource "aws_elb" "my-elb" {
   name            = "my-elb"
-  subnets         = [var.vpc.public_subnets]
+  subnets         = [var.vpc.public_subnets[0], var.vpc.public_subnets[1], var.vpc.public_subnets[2]]
   security_groups = [var.sg.lb]
   listener {
     instance_port     = 80
