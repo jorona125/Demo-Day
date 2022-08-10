@@ -8,8 +8,8 @@ resource "aws_launch_template" "webserver" {
   name_prefix   = var.project_name
   image_id      = "ami-0cff7528ff583bf9a"
   instance_type = "t2.micro"
-  user_data     = base64encode(file("${path.module}/script.sh"))
-  key_name      = var.ssh_keypair
+  user_data     = base64encode(file("${path.module}/script.tpl"))
+  key_name      = "Macbook"
   iam_instance_profile {
     name = module.iam_instance_profile.name
   }
@@ -29,7 +29,8 @@ resource "aws_autoscaling_group" "webserver" {
 resource "aws_elb" "my-elb" {
   name            = "my-elb"
   subnets         = [var.vpc.public_subnets[0], var.vpc.public_subnets[1], var.vpc.public_subnets[2]]
-  security_groups = [var.sg.lb]
+  security_groups = [var.sg.lb, var.sg.websvr]
+
   listener {
     instance_port     = 80
     instance_protocol = "http"
