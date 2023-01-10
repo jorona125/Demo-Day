@@ -1,0 +1,29 @@
+resource "azurerm_function_app" "example" {
+  name                      = "example-function-app"
+  location                  = azurerm_resource_group.example.location
+  resource_group_name       = azurerm_resource_group.example.name
+  storage_account_name      = azurerm_storage_account.example.name
+  app_service_plan_id       = azurerm_app_service_plan.example.id
+
+  app_settings = {
+    "FUNCTIONS_WORKER_RUNTIME" = "powershell"
+  }
+
+  site_config {
+    always_on = true
+  }
+}
+
+resource "azurerm_function_app_schedule" "example" {
+  name                = "example-function-app-schedule"
+  function_app_id     = azurerm_function_app.example.id
+  schedule_expression = "0 0 8,18 ? * MON-FRI *"
+
+
+  function {
+    name = "ExampleFunction"
+
+    script_path = "ExampleFunction/run.ps1"
+  }
+}
+
