@@ -1,0 +1,24 @@
+3 M5 16XLARGE EC2 instance, each with 8192GB of EBS General Purpose SSD for data (on top of CF2 OS install), RHEL 7, 1 server in each CMaaS AZ (A, B, and C) 
+    Server Names:
+        - cmaprdelalt07
+        - cmaprdelalt08
+        - cmaprdelalt09
+
+1 D2 8XLARGE EC2 instance deployed in CMaaS AZ A, RHEL 7
+        - cmaprdelalt10
+
+1 M5 16XLARGE EC2 instance, RHEL 7, deployed in CMaaS AZ A, S3 & Glacier, 4TB data drive (on top of the CF2 OS install) (index 400TB in S3 and glacier)
+    Server Name:
+        - cmaprdelalt11
+    Access to 
+        - S3 bucket (name TBD)
+        - Glacier bucket (name TBD)
+        - policy to age data from S3 to Glacier
+        - policy to age data out of Glacier  g
+
+1 M5 LARGE, RHEL 7, deployed in CMaaS AZ B, 1TB data drive (on top of the CF2 install)
+    Server Name:
+        - cmaprdellog05
+
+a S3 bucket
+a Glacier bucket
